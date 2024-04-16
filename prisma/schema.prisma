@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  firstname       String   @db.VarChar(50)
+  lastname        String   @db.VarChar(50)
+  username        String   @db.VarChar(50) @unique
+  email           String   @db.VarChar(120) @unique
+  password        String   @db.VarChar(100)
+  gender          String   @db.VarChar(20)
+  dateofbirth     DateTime @db.Date
+  location        String?  @db.VarChar(100)
+  bio             String?
+  profile_picture String?  @db.VarChar(255)
+  created_at      DateTime @default(now()) @db.Timestamp(6)
+  updated_at      DateTime @default(now()) @db.Timestamp(6)
+  is_active       Boolean  @default(true)
+  Match1          Match[]  @relation("User1")
+  Match2          Match[]  @relation("User2")
+
+  @@unique([username, email])
+  @@index([email])
+  @@index([username])
+}
+
+model Match {
+  id         Int      @id @default(autoincrement())
+  user1Id    Int
+  user2Id    Int
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  is_active  Boolean  @default(true)
+  updated_at DateTime @default(now()) @db.Timestamp(6)
+  user1      User     @relation("User1", fields: [user1Id], references: [id])
+  user2      User     @relation("User2", fields: [user2Id], references: [id])
+
+  @@unique([user1Id, user2Id])
+}

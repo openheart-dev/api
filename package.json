@@ -1,0 +1,56 @@
+{
+  "name": "openheart-api",
+  "version": "0.0.1",
+  "description": "The API for OpenHeart",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm.cmd run compile",
+    "pretest": "npm.cmd run compile",
+    "posttest": "npm.cmd run lint",
+    "start": "tsc && noode --unhandled-rejections=strict dist/index.js",
+    "dev": "set DEBUG=express:* & nodemon --watch 'src/**/*.ts' src/index.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openheart-dev/api.git"
+  },
+  "keywords": [
+    "openheart"
+  ],
+  "author": "Austin McCalley",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/openheart-dev/api/issues"
+  },
+  "homepage": "https://github.com/openheart-dev/api#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^4.17.21",
+    "@types/node": "20.11.5",
+    "gts": "^5.3.0",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.12.1",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.4.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "argon2": "^0.40.1",
+    "cassandra-driver": "^4.7.2",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "express": "^4.19.2",
+    "express-winston": "^4.2.0",
+    "winston": "^3.13.0"
+  }
+}
