@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/openheart-dev/api#readme",
   "devDependencies": {
+    "@ts-safeql/eslint-plugin": "^2.0.3",
     "@types/cors": "^2.8.17",
     "@types/debug": "^4.1.12",
     "@types/express": "^4.17.21",
@@ -49,6 +50,7 @@
     "cassandra-driver": "^4.7.2",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-winston": "^4.2.0",
     "winston": "^3.13.0"
